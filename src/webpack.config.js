@@ -13,6 +13,9 @@ const common = {
   entry: {
       app: PATHS.app
   },
+  resolve: {
+    extensions: [ '', '.js', '.jsx' ]  
+  },
   output: {
       path: PATHS.build,
       filename: 'bundle.js'
@@ -22,6 +25,11 @@ const common = {
           {
               test: /\.css$/,
               loaders: [ 'style', 'css' ],
+              include: PATHS.app
+          },
+          {
+              test: /\.jsx?$/,
+              loaders: [ 'babel?cacheDictionary' ],
               include: PATHS.app
           }
       ]
@@ -42,11 +50,14 @@ if(TARGET === 'start' || !TARGET){
             devtool: 'eval-source-map'
         },
         plugins: [
-            new webpack.HotModuleReplacementPlugin()
+            new webpack.HotModuleReplacementPlugin(),
+            new NpmInstallPlugin({
+                save: true
+            })
         ]
     });
 }
 
-if(TARGET === 'build'){
+/*if(TARGET === 'build'){
     module.exports = merge(common, {});
-}
+}*/
