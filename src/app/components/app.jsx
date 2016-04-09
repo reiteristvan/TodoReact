@@ -14,7 +14,6 @@ export default class App extends React.Component {
     }
     
     render(){
-        console.log('render');
         var todoItems = this.state.todoItems;
         
         return  (
@@ -39,7 +38,7 @@ export default class App extends React.Component {
         this.todoService.addTodoItem(item);
         
         this.setState({
-          todoItems: this.state.todoItems.concat(item)  
+          todoItems: this.todoService.getTodoItems()  
         })
     }
 } 

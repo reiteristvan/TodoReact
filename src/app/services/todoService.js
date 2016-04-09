@@ -26,6 +26,5 @@ export default class TodoService {
     
     addTodoItem(todoItem){
         this.todoItems.push(todoItem);
-        console.log('added');
     }
 }
