@@ -1,5 +1,8 @@
 
 import React from 'react';
+
+import Task from '../components/task.jsx';
+
 import TodoService from '../services/todoService.js'
 
 export default class App extends React.Component {
@@ -21,7 +24,9 @@ export default class App extends React.Component {
                 <button onClick={this.addTodoItem.bind(this)}>Add new</button>
                 <ul>
                     {todoItems.map(task =>
-                        <li key={task.id}>{task.description}</li>
+                        <li key={task.id}>
+                            <Task task={task} />
+                        </li>
                     )}
                 </ul>
             </div>
