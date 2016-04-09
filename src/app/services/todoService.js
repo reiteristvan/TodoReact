@@ -1,7 +1,7 @@
 
 export default class TodoService {
-    getTodoItems(){
-        return [
+    constructor(){
+         this.todoItems =  [
             { 
                 id: 0,
                 description: 'buy some milk',
@@ -17,6 +17,15 @@ export default class TodoService {
                 description: 'finish todo app',
                 done: true
             }
-        ];
+        ];   
+    }
+    
+    getTodoItems(){
+        return this.todoItems;
+    }
+    
+    addTodoItem(todoItem){
+        this.todoItems.push(todoItem);
+        console.log('added');
     }
 }
