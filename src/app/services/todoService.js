@@ -4,17 +4,17 @@ export default class TodoService {
         return [
             { 
                 id: 0,
-                task: 'buy some milk',
+                description: 'buy some milk',
                 done: false
             },
             { 
                 id: 1,
-                task: 'reply emails',
+                description: 'reply emails',
                 done: false
             },
             { 
                 id: 2,
-                task: 'finish todo app',
+                description: 'finish todo app',
                 done: true
             }
         ];

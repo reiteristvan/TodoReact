@@ -10,9 +10,9 @@ export default class App extends React.Component{
         return  (
             <div>
                 <ul>
-                {todoItems.map(function(value, index){
-                    return <li key={value.id}>{value.task}</li>    
-                })}
+                    {todoItems.map(task =>
+                        <li key={task.id}>{task.description}</li>
+                    )}
                 </ul>
             </div>
         );
