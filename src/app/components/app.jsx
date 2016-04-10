@@ -6,23 +6,25 @@ import Task from '../components/task.jsx';
 import TodoStore from '../stores/TodoStore.js';
 import { STORE_CHANGED } from '../stores/TodoStore.js';
 
+import TodoActions from '../actions/TodoActions.js';
+
 export default class App extends React.Component {
     constructor(props){
         super(props);
         
-        this.todoStore = new TodoStore();
+        //this.todoStore = new TodoStore();
 
         this.state = {
-          todoItems: this.todoStore.getAll()  
+          todoItems: TodoStore.getAll()  
         };
     }
     
     componentDidMount(){
-        this.todoStore.on(STORE_CHANGED, this.onStoreChange.bind(this));
+        TodoStore.on(STORE_CHANGED, this.onStoreChange.bind(this));
     }
     
     componentWillUnMount(){
-        this.todoStore.removeListener(STORE_CHANGED, this.onStoreChange);
+        TodoStore.removeListener(STORE_CHANGED, this.onStoreChange);
     }
     
     render(){
@@ -43,27 +45,21 @@ export default class App extends React.Component {
     }
     
     addTodoItem(){
-        var item = {
-           id: Math.floor(1 + Math.random() * 1000),
-           description: 'Click here to modify text',
-           done: false 
-        };
-        
-        this.todoStore.add(item);
+        TodoActions.create('Click here to modify text');
     }
     
     onEdit(task){
-        this.todoStore.update(task);
+        TodoStore.update(task);
     }
     
     onDone(task){
         task.done = true;
-        this.todoStore.update(task);
+        TodoStore.update(task);
     }
     
     onStoreChange(){
         this.setState({
-            todoItems: this.todoStore.getAll()
+            todoItems: TodoStore.getAll()
         })
     }
 } 
