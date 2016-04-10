@@ -20,19 +20,24 @@ export default class Task extends React.Component {
     
     renderNormal(){
         return (
-          <div onClick={this.edit.bind(this)}>
-                {this.props.task.description}
-          </div>  
+            <div className="center-block">
+                <div onClick={this.edit.bind(this)}>
+                    {this.props.task.description}
+                </div> 
+                <button className="btn btn-success">Done</button>
+            </div> 
         );
     }
     
     renderEdit(){
         return (
-            <input type="text"
-                   autoFocus={true}
-                   defaultValue={this.props.task.description}
-                   onBlur={this.finishEdit.bind(this)}
-                   onKeyPress={this.checkEnter.bind(this)} />
+            <div>
+                <input type="text"
+                       autoFocus={true}
+                       defaultValue={this.props.task.description}
+                       onBlur={this.finishEdit.bind(this)}
+                       onKeyPress={this.checkEnter.bind(this)} />
+            </div>
         );
     }
     
