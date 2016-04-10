@@ -45,6 +45,10 @@ export default class Task extends React.Component {
     }
     
     edit(){
+        if(this.props.task.done){
+            return;
+        }
+        
         this.setState({
             editing: true
         });
