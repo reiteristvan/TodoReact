@@ -27,4 +27,15 @@ export default class TodoService {
     addTodoItem(todoItem){
         this.todoItems.push(todoItem);
     }
+    
+    updateTodoItem(todoItem){
+        var existing = this.todoItems.find(i => i.id === todoItem.id);
+        
+        if(!existing){
+            console.log('existing item not found');
+        }
+        
+        existing.description = todoItem.description;
+        existing.done = todoItem.done;
+    }
 }

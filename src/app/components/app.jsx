@@ -25,7 +25,7 @@ export default class App extends React.Component {
                 <ul>
                     {todoItems.map(task =>
                         <li key={task.id}>
-                            <Task task={task} />
+                            <Task task={task} onEdit={this.onEdit.bind(this)}/>
                         </li>
                     )}
                 </ul>
@@ -36,7 +36,7 @@ export default class App extends React.Component {
     addTodoItem(){
         var item = {
            id: Math.floor(1 + Math.random() * 1000),
-           description: 'alma',
+           description: 'Click here to modify text',
            done: false 
         };
         
@@ -44,6 +44,15 @@ export default class App extends React.Component {
         
         this.setState({
           todoItems: this.todoService.getTodoItems()  
-        })
+        });
+    }
+    
+    onEdit(value){
+        console.log(value);
+        this.todoService.updateTodoItem(value);
+        
+        this.setState({
+          todoItems: this.todoService.getTodoItems()  
+        });
     }
 } 
