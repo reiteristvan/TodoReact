@@ -3,17 +3,25 @@ import React from 'react';
 
 import Task from '../components/task.jsx';
 
-import TodoService from '../services/todoService.js'
+import TodoStore from '../stores/TodoStore.js';
 
 export default class App extends React.Component {
     constructor(props){
         super(props);
         
-        this.todoService = new TodoService();
-        
+        this.todoStore = new TodoStore();
+
         this.state = {
-            todoItems: this.todoService.getTodoItems()    
+          todoItems: this.todoStore.getAll()  
         };
+    }
+    
+    componentDidMount(){
+        this.todoStore.on('ch', this.onStoreChange.bind(this));
+    }
+    
+    componentWillUnMount(){
+        this.todoStore.removeListener('ch', this.onStoreChange);
     }
     
     render(){
@@ -40,27 +48,21 @@ export default class App extends React.Component {
            done: false 
         };
         
-        this.todoService.addTodoItem(item);
-        
-        this.setState({
-          todoItems: this.todoService.getTodoItems()  
-        });
+        this.todoStore.add(item);
     }
     
     onEdit(task){
-        this.todoService.updateTodoItem(task);
-        
-        this.setState({
-          todoItems: this.todoService.getTodoItems()  
-        });
+        this.todoStore.update(task);
     }
     
     onDone(task){
         task.done = true;
-        this.todoService.updateTodoItem(task);
-        
+        this.todoStore.update(task);
+    }
+    
+    onStoreChange(){
         this.setState({
-            todoItems: this.todoService.getTodoItems()
-        });
+            todoItems: this.todoStore.getAll()
+        })
     }
 } 

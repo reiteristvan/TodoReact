@@ -1,7 +1,12 @@
 
-export default class TodoService {
+import AppDispatcher from '../dispatchers/AppDispatcher.js';
+import { EventEmitter } from 'events';
+
+export default class TodoStore extends EventEmitter {
     constructor(){
-         this.todoItems =  [
+       super();
+       
+        this.todoItems =  [
             { 
                 id: 0,
                 description: 'buy some milk',
@@ -17,18 +22,19 @@ export default class TodoService {
                 description: 'finish todo app',
                 done: true
             }
-        ];   
+        ]; 
     }
     
-    getTodoItems(){
+    getAll(){
         return this.todoItems;
     }
     
-    addTodoItem(todoItem){
+    add(todoItem){
         this.todoItems.push(todoItem);
+        this.emit('ch');
     }
     
-    updateTodoItem(todoItem){
+    update(todoItem){
         var existing = this.todoItems.find(i => i.id === todoItem.id);
         
         if(!existing){
@@ -38,5 +44,7 @@ export default class TodoService {
         
         existing.description = todoItem.description;
         existing.done = todoItem.done;
+        
+        this.emit('ch');
     }
 }
