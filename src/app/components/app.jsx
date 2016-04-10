@@ -25,7 +25,7 @@ export default class App extends React.Component {
                 <ul className="list-group">
                     {todoItems.map(task =>
                         <li key={task.id} className="list-group-item">
-                            <Task task={task} onEdit={this.onEdit.bind(this)}/>
+                            <Task task={task} onEdit={this.onEdit.bind(this)} onDone={this.onDone.bind(this)}/>
                         </li>
                     )}
                 </ul>
@@ -47,12 +47,20 @@ export default class App extends React.Component {
         });
     }
     
-    onEdit(value){
-        console.log(value);
-        this.todoService.updateTodoItem(value);
+    onEdit(task){
+        this.todoService.updateTodoItem(task);
         
         this.setState({
           todoItems: this.todoService.getTodoItems()  
+        });
+    }
+    
+    onDone(task){
+        task.done = true;
+        this.todoService.updateTodoItem(task);
+        
+        this.setState({
+            todoItems: this.todoService.getTodoItems()
         });
     }
 } 

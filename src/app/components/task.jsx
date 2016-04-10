@@ -23,8 +23,11 @@ export default class Task extends React.Component {
             <div className="center-block">
                 <div onClick={this.edit.bind(this)}>
                     {this.props.task.description}
-                </div> 
-                <button className="btn btn-success">Done</button>
+                </div>
+                {
+                    !this.props.task.done &&
+                    <button onClick={this.done.bind(this)} className="btn btn-success">Done</button>
+                }
             </div> 
         );
     }
@@ -45,6 +48,12 @@ export default class Task extends React.Component {
         this.setState({
             editing: true
         });
+    }
+    
+    done(){
+        if(this.props.onDone){
+            this.props.onDone(this.props.task);
+        }
     }
     
     checkEnter(e){
