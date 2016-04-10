@@ -1,5 +1,5 @@
 # TodoReact
-Template for a development environment for React, ES6, Flux and Bootstrap
+Template for a development environment with WebPack, React, ES6, Flux and Bootstrap
 
 Use the following commands to start the application:
 
