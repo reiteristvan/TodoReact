@@ -4,6 +4,7 @@ import React from 'react';
 import Task from '../components/task.jsx';
 
 import TodoStore from '../stores/TodoStore.js';
+import { STORE_CHANGED } from '../stores/TodoStore.js';
 
 export default class App extends React.Component {
     constructor(props){
@@ -17,11 +18,11 @@ export default class App extends React.Component {
     }
     
     componentDidMount(){
-        this.todoStore.on('ch', this.onStoreChange.bind(this));
+        this.todoStore.on(STORE_CHANGED, this.onStoreChange.bind(this));
     }
     
     componentWillUnMount(){
-        this.todoStore.removeListener('ch', this.onStoreChange);
+        this.todoStore.removeListener(STORE_CHANGED, this.onStoreChange);
     }
     
     render(){

@@ -2,6 +2,8 @@
 import AppDispatcher from '../dispatchers/AppDispatcher.js';
 import { EventEmitter } from 'events';
 
+export const STORE_CHANGED = 'storeChanged';
+
 export default class TodoStore extends EventEmitter {
     constructor(){
        super();
@@ -31,7 +33,7 @@ export default class TodoStore extends EventEmitter {
     
     add(todoItem){
         this.todoItems.push(todoItem);
-        this.emit('ch');
+        this.emit(STORE_CHANGED);
     }
     
     update(todoItem){
@@ -45,6 +47,6 @@ export default class TodoStore extends EventEmitter {
         existing.description = todoItem.description;
         existing.done = todoItem.done;
         
-        this.emit('ch');
+        this.emit(STORE_CHANGED);
     }
 }
