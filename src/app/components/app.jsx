@@ -12,8 +12,6 @@ export default class App extends React.Component {
     constructor(props){
         super(props);
         
-        //this.todoStore = new TodoStore();
-
         this.state = {
           todoItems: TodoStore.getAll()  
         };
@@ -49,12 +47,11 @@ export default class App extends React.Component {
     }
     
     onEdit(task){
-        TodoStore.update(task);
+        TodoActions.updateDescription(task.id, task.description);
     }
     
     onDone(task){
-        task.done = true;
-        TodoStore.update(task);
+        TodoActions.done(task.id);
     }
     
     onStoreChange(){
