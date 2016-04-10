@@ -20,11 +20,11 @@ export default class App extends React.Component {
         var todoItems = this.state.todoItems;
         
         return  (
-            <div>
+            <div className="container">
                 <button onClick={this.addTodoItem.bind(this)} className="btn btn-primary">Add new</button>
-                <ul>
+                <ul className="list-group">
                     {todoItems.map(task =>
-                        <li key={task.id}>
+                        <li key={task.id} className="list-group-item">
                             <Task task={task} onEdit={this.onEdit.bind(this)}/>
                         </li>
                     )}
