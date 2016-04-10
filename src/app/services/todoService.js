@@ -33,6 +33,7 @@ export default class TodoService {
         
         if(!existing){
             console.log('existing item not found');
+            return;
         }
         
         existing.description = todoItem.description;

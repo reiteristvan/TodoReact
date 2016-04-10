@@ -29,13 +29,16 @@ const common = {
       loaders: [
           {
               test: /\.css$/,
-              loaders: [ 'style', 'css' ],
-              include: PATHS.app
+              loaders: [ 'style', 'css' ]
           },
           {
               test: /\.jsx?$/,
               loaders: [ 'babel?cacheDirectory' ],
               include: PATHS.app
+          },
+          {
+              test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+              loaders: [ 'url-loader?limit=10000' ]
           }
       ]
   }  

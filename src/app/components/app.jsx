@@ -21,7 +21,7 @@ export default class App extends React.Component {
         
         return  (
             <div>
-                <button onClick={this.addTodoItem.bind(this)}>Add new</button>
+                <button onClick={this.addTodoItem.bind(this)} className="btn btn-primary">Add new</button>
                 <ul>
                     {todoItems.map(task =>
                         <li key={task.id}>
